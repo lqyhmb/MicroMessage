@@ -34,6 +34,8 @@ public class ListServlet extends HttpServlet {
 			String password = "";
 			String command = req.getParameter("command");
 			String description = req.getParameter("description");
+			req.setAttribute("command", command);
+			req.setAttribute("description", description);
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, password);
 			if (conn != null) {
