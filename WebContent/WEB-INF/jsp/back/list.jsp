@@ -53,7 +53,7 @@
 										<td>${message.description }</td>
 										<td>
 											<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-											<a href="#">删除</a>
+											<a href="${basePath }deleteOne.action?id=${message.id }">删除</a>
 										</td>
 									</tr>
 								</c:forEach>

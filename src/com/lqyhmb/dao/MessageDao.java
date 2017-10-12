@@ -29,6 +29,28 @@ public class MessageDao {
 	}
 
 	/**
+	 * 删除一条记录
+	 * 
+	 * @param id
+	 */
+	public void deleteOne(int id) {
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			// 通过SqlSession执行sql语句
+			sqlSession.delete("Message.deleteOne", id);
+			sqlSession.commit();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+	}
+
+	/**
 	 * 根据查询条件查询消息列表
 	 * 
 	 * @return
@@ -44,7 +66,7 @@ public class MessageDao {
 			message.setCommand(command);
 			message.setDescription(description);
 			// 通过SqlSession执行sql语句
-			messageList = sqlSession.selectList("Message.queryMessage",message);
+			messageList = sqlSession.selectList("Message.queryMessage", message);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

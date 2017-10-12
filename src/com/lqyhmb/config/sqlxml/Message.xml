@@ -29,6 +29,7 @@
     <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
   </resultMap>
 
+  <!-- 查询 -->
   <select id="queryMessage" parameterType="com.lqyhmb.model.Message" resultMap="MessageResult">
     select ID,COMMAND,DESCRIPTION,CONTENT from message where 1=1
     <if test="command != null and !&quot;&quot;.equals(command.trim())">
@@ -38,5 +39,9 @@
     	and DESCRIPTION like '%' #{description} '%'
     </if>
   </select>
-
+	
+  <!-- 删除 -->	
+  <delete id="deleteOne" parameterType="int">
+  	delete from message where id=#{_parameter}
+  </delete>	
 </mapper>
