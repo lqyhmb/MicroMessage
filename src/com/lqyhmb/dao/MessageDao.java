@@ -39,9 +39,12 @@ public class MessageDao {
 		List<Message> messageList = new ArrayList<Message>();
 		try {
 			sqlSession = dbAccess.getSqlSession();
+			// 参数
+			Message message = new Message();
+			message.setCommand(command);
+			message.setDescription(description);
 			// 通过SqlSession执行sql语句
-			messageList = sqlSession.selectList("Message.queryMessage");
-			//
+			messageList = sqlSession.selectList("Message.queryMessage",message);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
